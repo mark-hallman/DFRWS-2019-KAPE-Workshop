@@ -1,7 +1,13 @@
 # DFRWS2019-KAPE-Workshop
 Slides, scripts, notes, link, etc from my  2019 DFRWS KAPE Workshop
 
-At a minimum, before you come to the workshop, download ZimmermanTools and KAPE.  Please feel free to install and get familair with them both.
+At a minimum, before you come to the workshop, download ZimmermanTools and KAPE.  Please feel free to install and get familiar with them both.
+
+## Installation for the Workshop
+
+#### First,  here is the [Official KAPE Documentation by Eric Zimmerman](https://ericzimmerman.github.io/KapeDocs/#!index.md) 
+
+It will be so helpful if each of you could download and install KAPE and ZimmermanTools before you get to the Workshop.  I anticipate the the WiFi that will be available in the meeting rooms, of which there will be more than ours, will be terrible.  So there is a possibility that you will not be able to download in the classroom.  At that point we will end USB drive will be at a premium. 
 
 #### Download Get-ZimmermanTools.zip [from here](https://f001.backblazeb2.com/file/EricZimmermanTools/Get-ZimmermanTools.zip)
 
@@ -21,17 +27,36 @@ Unzip the files to a folder of your choice.  Here is a suggested structure for K
 
 ##### Example Folder Structure
 
-![1562561287380](C:\Users\Mark\AppData\Roaming\Typora\typora-user-images\1562561287380.png)
+![1562561287380](D:\GitHub\DFRWS-2019-KAPE-Workshop\media\1562561287380.png)
 
-On-Line YAML Validator Sites
+#### On-Line YAML Validator Sites
+
 https://codebeautify.org/yaml-validator
 https://jsonformatter.org/yaml-validator
 
 
 
-Commands for the Labs
+### Links to KAPE related Articles
 
-Lab 2 Simple KAPE command that:
+[Official KAPE Documentation by Eric Zimmerman](https://ericzimmerman.github.io/KapeDocs/#!index.md) 
+
+[Introducing KAPE!](https://binaryforay.blogspot.com/2019/02/introducing-kape.html)
+
+[Introduction to KAPE](https://www.youtube.com/watch?v=pZRrZAJif8Q)
+
+[Exploring KAPE’s Graphical User Interface](https://www.kroll.com/en/insights/publications/cyber/exploring-kapes-graphical-user-interface)
+
+[Automating SFTP Creation for KAPE’s Sake!](https://medium.com/@bromiley/automating-sftp-creation-for-kapes-sake-b0bc68d10522)
+
+[KAPE TRICKS](https://thinkdfir.com/2019/02/23/kape-tricks/)
+
+
+
+
+
+### Commands for the Labs
+
+##### Lab 2 Simple KAPE command that:
 
 Collects from your own C Drive
 
