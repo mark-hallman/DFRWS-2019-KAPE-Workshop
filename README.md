@@ -27,7 +27,7 @@ Unzip the files to a folder of your choice.  Here is a suggested structure for K
 
 ##### Example Folder Structure
 
-![1562561287380](D:\GitHub\DFRWS-2019-KAPE-Workshop\media\1562561287380.png)
+![1562561287380](media/1562561287380.png)
 
 #### On-Line YAML Validator Sites
 
