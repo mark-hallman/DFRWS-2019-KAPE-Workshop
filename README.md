@@ -1,5 +1,5 @@
 # DFRWS2019-KAPE-Workshop
-Slides, scripts, notes, link, etc from my  2019 DFRWS KAPE Workshop
+This Readme page is a one stop shop for all the slides, scripts, notes, link, etc from my  2019 DFRWS KAPE Workshop.  If something is missing,  or you just are looking for some additional information,  create an issue through this GitHub repo and I will do my best to help.  My contact info is in the slide deck and at the bottom of this document.
 
 At a minimum, before you come to the workshop, download ZimmermanTools and KAPE.  Please feel free to install and get familiar with them both.
 
@@ -66,5 +66,11 @@ Collects LNK FIles and Jump lists.  Run the command below and then review the re
 
 
 
+### Contact Information
 
+#### Mark Hallman
+
+Email:   [mark.hallman@gmail.com](mailto:mark.hallman@gmail.com)  
+Skype:   mhallman
+Twitter:   @mhallman
 
