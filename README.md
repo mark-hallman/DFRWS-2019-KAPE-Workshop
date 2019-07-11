@@ -1,4 +1,4 @@
-DFRWS2019-KAPE-Workshop
+# KAPE Workshop DFRWS 2019 
 
 This Readme page is a one stop shop for all the slides, scripts, notes, link, etc from my  2019 DFRWS KAPE Workshop.  If something is missing,  or you just are looking for some additional information,  create an issue through this GitHub repo and I will do my best to help.  My contact info is in the slide deck and at the bottom of this document.
 
