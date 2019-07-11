@@ -77,9 +77,9 @@ These are the command show in the slides, you can cut and paste them into to you
 
 
 
-Collect Lnk files and Jumplists from drive C.  Save the output to F:\kape_out\tdest.
+Collect Lnk files and Jumplists from drive C.  Save the output to G:\kape_out\tdest.
 
-`kape --tsource C: --target LnkFilesAndJumpLists --tdest F:\kape_out\tdest`
+`kape --tsource C: --target LnkFilesAndJumpLists --tdest G:\kape_out\tdest`
 
 Collect Evidence of Execution.  Clean up you destination folder before writing new data to it.   Save the output to a vhdx and provide the computer name as the base name for the vhdx.
 
@@ -101,10 +101,10 @@ kape --tsource C --target RegistryHives --vss --tflush --tdest \\share\DFIRkape_
 
 ### Hands on Labs
 
-Lab 1.1a - Collect evidence of execution and all registry files from your own system. Your base folder should start with "kape_out".  Example:  F:\kape_out.  After the command has finished,  review the folder structure that was created under F:\kape_out\tdest\C.  Last
+Lab 1.1a - Collect evidence of execution and all registry files from your own system. Your base folder should start with "kape_out".  Example:  G:\kape_out.  After the command has finished,  review the folder structure that was created under G:\kape_out\tdest\C.  Last
 
 ```
-kape --tsource C: --target LnkFilesAndJumpLists,EvidenceOfExecution --tdest F:\kape_out\tdest
+kape --tsource C: --target LnkFilesAndJumpLists,EvidenceOfExecution --tdest G:\kape_out\tdest
 ```
 
 Lab 1.1b - What was the total execution time according to the Console_Log.txt
@@ -116,7 +116,7 @@ Lab 1.1c -  We you looked at the LNK files,  did you see anything unexpected?
 Lab 1.2 
 
 ```
-kape --tsource C --target RegistryHives --vss --tflush --tdest F:\kape_out\tdest --vhdx $env:ComputerName
+kape --tsource C --target RegistryHives --vss --tflush --tdest G:\kape_out\tdest --vhdx $env:ComputerName
 ```
 
 
