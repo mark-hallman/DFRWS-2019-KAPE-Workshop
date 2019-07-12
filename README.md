@@ -1,3 +1,5 @@
+
+
 # KAPE Workshop DFRWS 2019 
 
 This Readme page is a one stop shop for all the slides, scripts, notes, link, etc from my  2019 DFRWS KAPE Workshop.  If something is missing,  or you just are looking for some additional information,  create an issue through this GitHub repo and I will do my best to help.  My contact info is in the slide deck and at the bottom of this document.
@@ -18,9 +20,9 @@ Looking forward to seeing you all Sunday afternoon.
 
 #### First,  here is the [Official KAPE Documentation by Eric Zimmerman](https://ericzimmerman.github.io/KapeDocs/#!index.md) 
 
-**Second,  the update and install scripts are run PowerShell**,  that's just how it is.  But really, it is a good thing.  Come on over to the Dark Side.  Once installed and updated you can switch back to cmd if you must.  There is also a Windows GUI for KAPE which we will demo, but is later in the workshop.  
+**Second,  the update and install scripts are run PowerShell**,  that's just how it is.  But really, it is a good thing.  Come on over to the Dark Side.  Once installed and updated you can switch back to cmd if you must.  There is also a Windows GUI for KAPE which we will demo in the workshop.  
 
-It will be so helpful if each of you could download and install KAPE and ZimmermanTools before you get to the Workshop.  I anticipate the the WiFi that will be available in the meeting rooms, of which there will be more than ours, will be terrible.  So there is a possibility that you will not be able to download in the classroom.  At that point USB drive will be at a premium.  ;-0
+It will be so helpful if each of you could download and install KAPE and ZimmermanTools before you get to the Workshop.  I anticipate the the WiFi that will be available in the meeting rooms, of which there will be more than ours, will be terrible.  So there is a possibility that you will not be able to download in the classroom.  At that point USB drives will be at a premium.  ;-0
 
 #### Step 1 - Download Get-ZimmermanTools.zip [from here](https://f001.backblazeb2.com/file/EricZimmermanTools/Get-ZimmermanTools.zip)
 
@@ -36,7 +38,7 @@ This example downloads/extracts and saves details about programs to c:\Tools\Zim
 
 #### Step 2 - Download KAPE from Kroll's Website [found here](https://learn.duffandphelps.com/kape?utm_campaign=2019_cyberitbn-KAPE-launch&utm_source=kroll&utm_medium=referral&utm_term=kape-launch-blog-post) 
 
-Unzip the files to a folder of your choice.  Here is a suggested structure for KAPE and Zimmerman tools locations.  You can put them anywhere you want, even on a thumb drive or external hard drive.pp
+Unzip the files to a folder of your choice. This part does not require Powershell but updating the application in the future will.   Here is a suggested structure for KAPE and Zimmerman tools locations.  You can put them anywhere you want, even on a thumb drive or external hard drive.
 
 ##### Example Folder Structure
 
@@ -63,6 +65,8 @@ https://jsonformatter.org/yaml-validator
 
 [KAPE TRICKS](https://thinkdfir.com/2019/02/23/kape-tricks/)
 
+[RECmd_Batch_MC.reb](https://github.com/EricZimmerman/RECmd/blob/master/BatchExamples/RECmd_Batch_MC.reb) - Mike Cary's RECmd BAtch Example
+
 
 
 ### Links to KAPE related Scripts / Code
@@ -75,16 +79,18 @@ Mike Gray's [Get-KapeModuleBinaries](https://github.com/grayfold3d/Get-KapeModul
 
 These are the command show in the slides, you can cut and paste them into to your terminal window or your editor.  Is you have trouble with a particular command referencing these may help you resolve it.
 
-
+#### Targets
 
 Collect Lnk files and Jumplists from drive C.  Save the output to G:\kape_out\tdest.
 
-`kape --tsource C: --target LnkFilesAndJumpLists --tdest G:\kape_out\tdest`
+```
+kape --tsource C: --target LnkFilesAndJumpLists --tdest G:\kape_out\tdest
+```
 
 Collect Evidence of Execution.  Clean up you destination folder before writing new data to it.   Save the output to a vhdx and provide the computer name as the base name for the vhdx.
 
 ```
-kape --tsource C: --target EvidenceOfExecution --tflush --tdest E:\evidence\tdest --vhdx $env:ComputerName
+kape --tsource C: --target EvidenceOfExecution --tflush --tdest G:\kape_out\tdest --vhdx $env:ComputerName
 ```
 
 Collect all the registry hives from C and all the volume shadow copies (vss).  Cleanup your target destination before writing new data.  Your destination is on a network and is referenced by a UNC path.  Use an environment var to build the name of the vhdx.
@@ -93,31 +99,36 @@ Collect all the registry hives from C and all the volume shadow copies (vss).  C
 kape --tsource C --target RegistryHives --vss --tflush --tdest \\share\DFIRkape_out\tdest --vhdx $env:ComputerName
 ```
 
+Example showing several functions:  Multiple targets separated by commas. Collecting volume shadowcopies and depuping.  Lastly saving the collected data via SFTP to another server.  You will need to have you own ssh server and credentials to use this feature.
+
+```
+kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,EvidenceOfExecution --tdest C:\temp\tout –vss --tdd
+--scs 104.248.94.196 --scp 22 --scu kape-ssh --scpw "KAP3g0at" --vhdx $env:ComputerName 
+```
 
 
 
+#### Modules
+
+```
+kape -–msource G:\kape_out\tdest -–module LECmd,JLEcmd --mdest G:\kape_out\mdest  
+```
+
+```
+kape --msource E:\kape_out\tdest -–module PECmd,AmcacheParser mflush --mdest E:\kape_out\mdest
+```
+
+Run RegistryHives Target and RECmd Module to generate a comprehensive set of registry reports.  RECmd Module calls RECmd.exe using registry explorer batch file.
+
+```
+kape --tsource C --target RegistryHives --tflush --tdest F:\kape_out\tdest --vhdx $env:ComputerName --msource F:\kape_out\tdest --module RECmd --mdest F:\kape_out\mdest
+```
 
 
 
 ### Hands on Labs
 
-Lab 1.1a - Collect evidence of execution and all registry files from your own system. Your base folder should start with "kape_out".  Example:  G:\kape_out.  After the command has finished,  review the folder structure that was created under G:\kape_out\tdest\C.  Last
-
-```
-kape --tsource C: --target LnkFilesAndJumpLists,EvidenceOfExecution --tdest G:\kape_out\tdest
-```
-
-Lab 1.1b - What was the total execution time according to the Console_Log.txt
-
-Lab 1.1c -  We you looked at the LNK files,  did you see anything unexpected?
-
-
-
-Lab 1.2 
-
-```
-kape --tsource C --target RegistryHives --vss --tflush --tdest G:\kape_out\tdest --vhdx $env:ComputerName
-```
+Theses lab questions will be added before the work starts
 
 
 
