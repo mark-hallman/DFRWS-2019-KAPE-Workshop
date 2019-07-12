@@ -42,7 +42,7 @@ Unzip the files to a folder of your choice. This part does not require Powershel
 
 ##### Example Folder Structure
 
-![media\1562561287380.png)
+![1562561287380.png)
 
 #### On-Line YAML Validator Sites
 
