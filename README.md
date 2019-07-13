@@ -83,6 +83,8 @@ Mike Gray's [Get-KapeModuleBinaries](https://github.com/grayfold3d/Get-KapeModul
 
 
 
+------
+
 ### Commands in the Slides
 
 These are the command show in the slides, you can cut and paste them into to your terminal window or your editor.  Is you have trouble with a particular command referencing these may help you resolve it.
@@ -104,13 +106,13 @@ kape --tsource C: --target EvidenceOfExecution --tflush --tdest G:\kape_out\tdes
 Collect all the registry hives from C and all the volume shadow copies (vss).  Cleanup your target destination before writing new data.  Your destination is on a network and is referenced by a UNC path.  Use an environment var to build the name of the vhdx.
 
 ```
-kape --tsource C --target RegistryHives --vss --tflush --tdest \\share\DFIRkape_out\tdest --vhdx $env:ComputerName
+kape --tsource C --target RegistryHives --vss --tflush --tdest \\<your-share>\kape_out\tdest --vhdx $env:ComputerName
 ```
 
 Example showing several functions:  Multiple targets separated by commas. Collecting volume shadowcopies and depuping.  Lastly saving the collected data via SFTP to another server.  You will need to have you own ssh server and credentials to use this feature.
 
 ```
-kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,EvidenceOfExecution --tdest C:\temp\tout –vss --tdd
+kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,EvidenceOfExecution --tdest C:\kape_out\tdest –vss --tdd
 --scs 104.248.94.196 --scp 22 --scu kape-ssh --scpw "KAP3g0at" --vhdx $env:ComputerName 
 ```
 
@@ -134,11 +136,49 @@ kape --tsource C --target RegistryHives --tflush --tdest F:\kape_out\tdest --vhd
 
 
 
+------
+
 ### Hands on Labs
+
+#### Target and module names, on the command line do not include the extension (.tkape or .mkape)
 
 Theses lab questions will be added before the work starts
 
+Using the command line version of KAPE,  collect 
 
+#### Lab-01
+
+Use command line or GUI version of KAPE (or maybe even try both) collect all the Registry Hives on your own system.  Flush your tdest folder. Write the files out to a drive of your choice but in a top level folder named `kape_out/lab-01`.  
+
+​	How many files were copied out?  How man were deduced?  How long did it take?
+
+Example target dest:  `--tdest C:\kape_out\LAB-01\tdest` We will being looking at the output of this command later in the workshop.  
+
+#### LAB-01 Solution
+
+```
+kape --tsource C --target RegistryHives --vss --tflush --tdest C:\kape_out\lab-01\tdest
+```
+
+
+
+![LAB-01-GKAPE](/Users/mark/github/DFRWS-2019-KAPE-Workshop/media/LAB-01-GKAPE.png)
+
+
+
+#### Lab-02
+
+From the command line,  collect LNK file (shortcuts) & all registry files, including the volume shadow copies. Wrap them up in a vhdx with a base name of LAB-02. Save them to `kape_out\lab-02\tdest`.  I you get stuck look at the GitHub page and find the presentation to refer to.  Or,  build the command in GKAPE and then cut & paste the command into the command line. Looking for the target name,  look in your `kape\targets` folder
+
+```
+.\kape.exe --tsource C: --tdest G:\kape_out\LAB-02\tdest --tflush --target LnkFilesAndJumpLists,RegistryHives --vss --vhdx LAB-02 --gui
+```
+
+
+
+
+
+------
 
 ### Contact Information
 
