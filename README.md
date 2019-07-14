@@ -176,7 +176,19 @@ From the command line,  collect LNK file (shortcuts) & all registry files, inclu
 
 
 
+#### Lab-03 
 
+Run the compound target name !BasicCollection of your own system.  This target is a good example of the nor normal artificats you might want to collect from a Windows system in a triage situation.  Save the data to a vhdx with a base name of the the computer name in a folder named `kape_out\LAB-03\tdest`
+
+```
+kape --tflush --tsource C: --target !BasicCollection --tdest C:\kape_out\LAB-03\tdest --vss --vhdx $env.ComputerName
+```
+
+
+
+Lab-0X
+
+Module processing.  Look at the data or the module !Basic Processing and run some modules to process it.
 
 ------
 
