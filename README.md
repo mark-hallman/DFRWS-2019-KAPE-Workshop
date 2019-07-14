@@ -120,18 +120,22 @@ kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,Evidence
 
 #### Modules
 
+Run two KAPE modules, LECmd and JLEcmd on the output from the previous run LnkFilesAndJumpLists target.
+
 ```
 kape -–msource G:\kape_out\tdest -–module LECmd,JLEcmd --mdest G:\kape_out\mdest  
 ```
 
+Run two KAPE modules, PECmd and AmcacheParser on the output from the previous run EvidenceOfExecution target.
+
 ```
-kape --msource E:\kape_out\tdest -–module PECmd,AmcacheParser mflush --mdest E:\kape_out\mdest
+kape --msource E:\kape_out\tdest -–module PECmd,AmcacheParser mflush --mdest G:\kape_out\mdest
 ```
 
 Run RegistryHives Target and RECmd Module to generate a comprehensive set of registry reports.  RECmd Module calls RECmd.exe using registry explorer batch file.
 
 ```
-kape --tsource C --target RegistryHives --tflush --tdest F:\kape_out\tdest --vhdx $env:ComputerName --msource F:\kape_out\tdest --module RECmd --mdest F:\kape_out\mdest
+kape --tsource C --target RegistryHives --tflush --tdest G:\kape_out\tdest --vhdx $env:ComputerName --msource G:\kape_out\tdest --module RECmd --mdest G:\kape_out\mdest
 ```
 
 
@@ -148,7 +152,7 @@ Using the command line version of KAPE,  collect
 
 #### Lab-01
 
-Use command line or GUI version of KAPE (or maybe even try both) collect all the Registry Hives on your own system.  Flush your tdest folder. Write the files out to a drive of your choice but in a top level folder named `kape_out/lab-01`.  
+Use command line or GUI version of KAPE (or maybe even try both) collect all the Registry Hives on your own system.  Flush your tdest folder before collecting any data. Write the files out to a drive of your choice but in a top level folder named `kape_out\lab-01\tdest`.  
 
 ​	How many files were copied out?  How man were deduced?  How long did it take?
 
@@ -168,7 +172,7 @@ kape --tsource C --target RegistryHives --vss --tflush --tdest C:\kape_out\lab-0
 
 #### Lab-02
 
-From the command line,  collect LNK file (shortcuts) & all registry files, including the volume shadow copies. Wrap them up in a vhdx with a base name of LAB-02. Save them to `kape_out\lab-02\tdest`.  I you get stuck look at the GitHub page and find the presentation to refer to.  Or,  build the command in GKAPE and then cut & paste the command into the command line. Looking for the target name,  look in your `kape\targets` folder
+From the command line,  collect LNK file (shortcuts) & all registry files, including the volume shadow copies. Wrap them up in a vhdx with a base name of LAB-02. Save them to `kape_out\lab-02\tdest`.  I you get stuck look at the GitHub page, there are several resoures there that will help you.  Or,  build the command in GKAPE and then cut & paste the command into the command line. Looking for the target name(s) to use,  look in your `kape\targets` folder.
 
 ```
 .\kape.exe --tsource C: --tdest G:\kape_out\LAB-02\tdest --tflush --target LnkFilesAndJumpLists,RegistryHives --vss --vhdx LAB-02 --gui
@@ -178,19 +182,59 @@ From the command line,  collect LNK file (shortcuts) & all registry files, inclu
 
 #### Lab-03 
 
-Run the compound target name !BasicCollection of your own system.  This target is a good example of the nor normal artificats you might want to collect from a Windows system in a triage situation.  Save the data to a vhdx with a base name of the the computer name in a folder named `kape_out\LAB-03\tdest`
+Run the compound target named !BasicCollection of your own system.  This target is a good example of the typical artificats you might want to collect from a Windows system in a triage situation.  There are many targets that will be called by this compound target.  Save the data to a vhdx with a base name of the the computer name in a folder named `kape_out\LAB-03\tdest`
 
 ```
 kape --tflush --tsource C: --target !BasicCollection --tdest C:\kape_out\LAB-03\tdest --vss --vhdx $env.ComputerName
 ```
 
+#### Lab-04
+
+Using Notepad or any editor of you choice,  review the Console_Log.txt that resulted from Lab-01 - Lab-03.  They should all look different becaue different targets were run.  Spend just a few minutes on each one as you are really just trying to a get a quick feel for the kind of infomation that can be found here.
 
 
-Lab-0X
 
-Module processing.  Look at the data or the module !Basic Processing and run some modules to process it.
+#### Lab-05
 
-------
+Launch TimeLine Explorer (TLE).  It is found in the ZImmerTools/Timeline Explorer folder. You should have installed ZImmerman Tools at the same time that you installed KAPE.  If you did not install TLE and you have Excel or another spreadsheet, you can use that to review the csv's
+
+Using TLE load the CopyLog.csv file for one of your target runs.  Use TLE to filter the data.  Use TLE to sort by date.  Just experiment a little,  look at the info in the CopyLog.csv and how powerful TLE is.
+
+#### Lab-06
+
+Unzip and mount the VHDX file created in Lab-02 or Lab-03.  Mounting is just a matter of double clicking on the unzipped VHDX.  What drive letter was it assigned?  Can you navigate through the folder structure?  Can you see that the folder structure was preserved?
+
+#### Lab-07
+
+Run the RECmd module to process all the registry files that were collected in LAB-01.  RECmd calls a Registry Explorer batch file to does some really impressive processing.  I want you to know that this kind of power is possible with KAPE and for now,  just o run how run it.  Creating this kind of module and the associated Registry Explorer batch file is beyond the scope of this workshop.  But,  if you study the examples and read the Registry Explorer docs,  you can create your own.
+
+Review all the csv's this modules produces.  Load some of them up in Timeline Explorer and look at the data.
+
+```
+kape --msource F:\kape_out\LAB-01\tdest --module RECmd --mdest F:\kape_out\LAB-04\mdest
+```
+
+#### Lab-08
+
+
+
+#### Lab-09
+
+Module processing.  Look at the elements in the target !Basic Processing (run in Lab-03) and run some modules to process it.  Just wanting you to find 2 - 3 modules that would process the artifacts collected by this target.  Hint:  Evidence of Execution is a compound target,  meaing the it expands and there are more target inside that name.  
+
+Construct a tape module command to process the output from Lab-03.  Remember that Lab-03 saved it's data to a vhdx so you will need to mount it before you can run your list of modules against it.  
+
+![](/Users/mark/github/DFRWS-2019-KAPE-Workshop/media/BasicCollection.png)
+
+
+
+```
+kape --msource K:\C  --module EvtxECmd,Prefetch,PECmd,JLECmd,LECmd,MFTECmd_$MFT,WxTCmd --mdest G:\kape_out\Lab-09\mdest --mflush
+```
+
+The value for --msource looks different that we have seen becuase the module source is the mounted VHDX.
+
+
 
 ### Contact Information
 
