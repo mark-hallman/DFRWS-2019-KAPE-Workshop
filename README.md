@@ -44,6 +44,10 @@ Unzip the files to a folder of your choice. This part does not require Powershel
 
 ![](media/1562561287380.png)
 
+Workshop Slide Deck
+
+
+
 #### On-Line YAML Validator Sites
 
 https://codebeautify.org/yaml-validator
@@ -112,6 +116,8 @@ kape --tsource C --target RegistryHives --vss --tflush --tdest \\<your-share>\ka
 Example showing several functions:  Multiple targets separated by commas. Collecting volume shadowcopies and depuping.  Lastly saving the collected data via SFTP to another server.  You will need to have you own ssh server and credentials to use this feature.
 
 ```
+kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,EvidenceOfExecution --tdest C:\kape_out\tdest --tdd --scs 172.16.21.243 --scp 22 --scu kape-user --scpw "forensics" --vhdx $env:ComputerName
+
 kape --tflush --tsource C: --target RegistryHives, LnkFilesAndJumpLists,EvidenceOfExecution --tdest C:\kape_out\tdest –vss --tdd
 --scs 104.248.94.196 --scp 22 --scu kape-ssh --scpw "KAP3g0at" --vhdx $env:ComputerName 
 ```
@@ -129,7 +135,7 @@ kape -–msource G:\kape_out\tdest -–module LECmd,JLEcmd --mdest G:\kape_out\m
 Run two KAPE modules, PECmd and AmcacheParser on the output from the previous run EvidenceOfExecution target.
 
 ```
-kape --msource E:\kape_out\tdest -–module PECmd,AmcacheParser mflush --mdest G:\kape_out\mdest
+kape --msource E:\kape_out\tdest -–module PECmd,AmcacheParser --mflush --mdest G:\kape_out\mdest
 ```
 
 Run RegistryHives Target and RECmd Module to generate a comprehensive set of registry reports.  RECmd Module calls RECmd.exe using registry explorer batch file.
