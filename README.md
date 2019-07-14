@@ -44,7 +44,7 @@ Unzip the files to a folder of your choice. This part does not require Powershel
 
 ![](media/1562561287380.png)
 
-Workshop Slide Deck
+[Download Workshop Slide Deck](media/DFRWS 2019 - KAPE.pdf)
 
 
 
