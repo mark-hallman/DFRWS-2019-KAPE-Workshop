@@ -162,7 +162,7 @@ kape --tsource C --target RegistryHives --vss --tflush --tdest C:\kape_out\lab-0
 
 
 
-![LAB-01-GKAPE](/Users/mark/github/DFRWS-2019-KAPE-Workshop/media/LAB-01-GKAPE.png)
+![LAB-01-GKAPE](media/LAB-01-GKAPE.png)
 
 
 
